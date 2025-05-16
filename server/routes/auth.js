@@ -1,10 +1,10 @@
 import express from 'express';
 import { login } from '../controllers/authController.js';
-import authMiddleware from '../middleware/authMiddleware.js';
 import { verify } from '../controllers/authController.js';
+import verifyUser from '../middleware/authMiddleware.js';
 
 const router  = express.Router();
 router.post('/login', login)
-router.post('/verify', authMiddleware,verify)
+router.get('/verify', verifyUser,verify)
 
 export default router;

@@ -3,13 +3,15 @@ import axios from 'axios';
 
 const UserContext = createContext();
 
-const AuthContext = ({ children }) => {
+const authContext = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+       // debugger ;
         const verifyUser = async () => {
             const token = localStorage.getItem('token');
+           // console.log('Token from localStorage',token)
             if (token) {
                 try {
                     const response = await axios.get('http://localhost:5000/api/auth/verify', {
@@ -17,31 +19,39 @@ const AuthContext = ({ children }) => {
                             Authorization: `Bearer ${token}`,
                         },
                     });
+                   // console.log('Response from verify:', response.data);
                     if (response.data.success) {
                         setUser(response.data.user);
                     } else {
                         setUser(null);
+                        setLoading(false);
                     }
-                } catch (err) {
-                    console.error(err); // Log the error for debugging
+                } catch (error) {
+                    //console.error('Error during verification:', error.response?.data || error.message); // Log the error for debugging
                     setUser(null);
                 }
+             
             }
-            setLoading(false); // Set loading to false after verification
+            setLoading(false);
+            
         };
-
         verifyUser();
-    }, []);
+}, []);
+    // console.log('User:', user);
+    //console.log('Loading:', loading);    
 
-    const login = (user) => {
+    const login = (user,token) => {
         setUser(user);
-        localStorage.setItem('token', user.token); // Save token to local storage
+        localStorage.setItem('token', token); 
+        //console.log('User token:', localStorage.getItem('token'));
     };
 
     const logout = () => {
         setUser(null);
         localStorage.removeItem('token'); // Clear token from local storage
     };
+
+  // console.log('Token stored in localStorage:', localStorage.getItem('token'));
 
     if (loading) {
         return <div>Loading...</div>;
@@ -57,5 +67,5 @@ const AuthContext = ({ children }) => {
 // Custom hook to use the AuthContext
 const useAuth = () => useContext(UserContext);
 
-export default AuthContext;
+export default authContext;
 export { useAuth };

@@ -14,22 +14,22 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null); // Reset error before making the request
-
+    //setError(null); 
     try {
       const response = await axios.post(
         'http://localhost:5000/api/auth/login',
         { email, password }
-      );
-
+       ); 
+       
       if (response.data.success) {
-        login(response.data.user); // Call login function from context
+      //  console.log('Response:', response.data);
+        login(response.data.user, response.data.token); 
         alert('Login successful!');
-        if (rememberMe) {
-          localStorage.setItem('email', email); // Save email if "Remember Me" is checked
-        } else {
-          localStorage.removeItem('email'); // Clear saved email if unchecked
-        }
+        // if (rememberMe) {
+        //   localStorage.setItem('email', email); 
+        // } else {
+        //   localStorage.removeItem('email'); 
+        // }
 
         if (response.data.user.role === 'admin') {
         navigate('/AdminDashboard'); // Redirect to AdminDashboard
@@ -43,6 +43,7 @@ const Login = () => {
         setError(error.response.data.error); // Display backend error
       } else {
         setError('An unexpected error occurred. Please try again later.');
+        console.error('Error:', error); 
       }
     }
   };

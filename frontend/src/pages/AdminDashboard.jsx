@@ -1,5 +1,9 @@
 import React from 'react';
 import { useAuth } from '../context/authContext';
+import AdminSidebar from '../components/dashboard/AdminSidebar';
+import Navbar from '../components/dashboard/Navbar';
+import AdminSummary from '../components/dashboard/AdminSummary';
+import {Outlet} from 'react-router-dom';
 
 const AdminDashboard = () => {
     const { user, loading } = useAuth(); // Import loading from AuthContext
@@ -17,8 +21,13 @@ const AdminDashboard = () => {
     }
 
     return (
-        <div className="text-2xl text-green-600 text-center mt-10">
-            Welcome to the Admin Dashboard, {user.name}!
+        <div>
+            <AdminSidebar />
+            <div className='flex-1 ml-64 bg-gray-100 h-screen'> 
+                <Navbar />
+               <Outlet />
+                </div>
+            
         </div>
     );
 };
