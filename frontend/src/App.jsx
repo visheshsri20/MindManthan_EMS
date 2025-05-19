@@ -7,6 +7,7 @@ import RoleBaseRoutes from './utils/RoleBaseRoutes';
 import AdminSummary from './components/dashboard/AdminSummary';
 import './index.css'; // Import Tailwind CSS
 import DepartmentList from './components/department/DepartmentList';
+import AddDepartment from './components/department/AddDepartment';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
           
          <Route index element ={<AdminSummary/>}></Route> 
          <Route path="/AdminDashboard/departments" element={<DepartmentList/>}></Route> 
+         <Route path="/AdminDashboard/add-department" element={<AddDepartment/>}></Route> 
           </Route>
       <Route path="/EmployeeDashboard" element={<EmployeeDashboard/>}></Route>
     

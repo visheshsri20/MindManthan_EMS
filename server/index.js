@@ -3,6 +3,7 @@ import cors from 'cors'
 import authRouter from './routes/auth.js'
 import dotenv from 'dotenv';
 import connectDB from './db/db.js'
+import departmentRouter from './routes/department.js';
 
 
 dotenv.config();
@@ -19,6 +20,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/auth', authRouter)
+
+app.use('/api/department', departmentRouter)
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
