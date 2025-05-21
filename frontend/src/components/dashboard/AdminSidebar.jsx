@@ -7,7 +7,7 @@ const AdminSidebar = () => {
     <div className="bg-gray-800 text-white h-screen fixed left-0 top-0 bottom-0 space-y-2 w-64">
       <div className="bg-[#007BFF] h-12 flex items-center justify-center">
         <h3 className="text-2xl text-center font-pacific" style={{ fontFamily: 'Pacifico, cursive' }}>
-          Employee MS
+         MindManthan Mantis
         </h3>
       </div>
       <div className="px-4">
@@ -22,8 +22,11 @@ const AdminSidebar = () => {
           <span>Dashboard</span>
         </NavLink>
         <NavLink
-          to="/AdminDashboard"
-          className="flex items-center space-x-4 py-2.5 px-4 rounded  hover:bg-blue-400"
+          to="/AdminDashboard/employees"
+          className={({ isActive }) =>
+            `${isActive ? 'bg-[#007BFF]' : ''} flex items-center space-x-4 py-2.5 px-4 rounded  hover:bg-blue-400`
+          }
+          end
         >
           <FaUsers />
           <span>Employee</span>

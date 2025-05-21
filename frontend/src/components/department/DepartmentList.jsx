@@ -36,7 +36,6 @@ const DepartmentList = () => {
         }
       } catch (error) {
         alert(error.response?.data?.error || "Error fetching departments");
-        console.error('Error fetching departments:', error);
       } finally {
         setDepLoading(false);
       }
@@ -56,10 +55,6 @@ const DepartmentList = () => {
     }
   }, [departments, searchTerm]);
 
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
   return (
     <>
       {depLoading ? (
@@ -74,7 +69,7 @@ const DepartmentList = () => {
               type="text"
               placeholder="Search by dept name"
               value={searchTerm}
-              onChange={handleSearchChange}
+              onChange={e => setSearchTerm(e.target.value)}
             />
             <Link
               to="/AdminDashboard/add-department"
@@ -87,6 +82,8 @@ const DepartmentList = () => {
             <DataTable
               columns={columns}
               data={filteredDepartments}
+              pagination
+              paginationPerPage={10}
             />
           </div>
         </div>
