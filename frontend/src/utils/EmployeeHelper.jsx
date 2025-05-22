@@ -6,9 +6,10 @@ export const columns = [
     name: 'S.No',
     selector: (row) => row.sno,
     sortable: true,
+    width: "80px"
   },
   {
-    name: 'Profile Image',
+    name: 'Image',
     selector: (row) => row.image ? (
       <img
         src={`http://localhost:5000/uploads/${row.image}`}
@@ -18,16 +19,18 @@ export const columns = [
     ) : (
       <span className="text-gray-400">No Image</span>
     ),
-    width: "80px"
+    width: "70px"
   },
    {
     name: 'Employee Name',
     selector: (row) => row.name,
     sortable: true,
+    width: "140px"
   },
   {
     name: 'Department Name',
     selector: (row) => row.dep_name,
+    width: "150px"
     
   },
  {
@@ -66,7 +69,7 @@ export const EmployeeButtons = ({_id}) => {
         <div className="flex space-x-3">
             <button
                 className="px-4 py-1 bg-green-500 text-white hover:bg-green-600 transition-colors"
-                //onClick={() => navigate(`/AdminDashboard/department/${_id}`)}
+                onClick={() => navigate(`/AdminDashboard/employees/${_id}`)}
             >
                 View
             </button>

@@ -5,7 +5,8 @@ import dotenv from 'dotenv';
 import connectDB from './db/db.js'
 import departmentRouter from './routes/department.js';
 import employeeRouter from './routes/employee.js';
-
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
 const app = express()

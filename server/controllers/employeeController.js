@@ -82,4 +82,21 @@ const getEmployees = async (req, res) =>
     }
 }
 
-export {addEmployee, upload, getEmployees};
+const getEmployee = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const employee = await Employee.findById(id) // Pass the id directly
+      .populate('userId', { password: 0 })
+      .populate('department');
+    if (!employee) {
+      return res.status(404).json({ success: false, error: 'Employee not found' });
+    }
+    return res.status(200).json({ success: true, employee });
+  } catch (error) {
+    console.error('Error getting employee:', error);
+    return res.status(500).json({ success: false, error: 'GET employee server error' });
+  }
+};
+
+
+export {addEmployee, upload, getEmployees, getEmployee};

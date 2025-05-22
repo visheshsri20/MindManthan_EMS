@@ -10,6 +10,7 @@ import AddDepartment from './components/department/AddDepartment';
 import EditDepartment from './components/department/EditDepartment';
 import List from './components/employee/List';
 import Add from './components/employee/Add';
+import View from './components/employee/View';
 
 import './index.css'; // Tailwind CSS
 
@@ -38,12 +39,14 @@ function App() {
           <Route index element={<AdminSummary />} />
           <Route path="departments" element={<DepartmentList />} />
           <Route path="add-department" element={<AddDepartment />} />
-          <Route path="add-employee" element={<Add />} />
           <Route path="department/:id" element={<EditDepartment />} />
+
+          <Route path="add-employee" element={<Add />} />
           <Route path="employees" element={<List />} />
+          <Route path="employees/:id" element={<View />} />
         </Route>
 
-        {/* Employee Dashboard (no role guard assumed here) */}
+
         <Route path="/EmployeeDashboard" element={<EmployeeDashboard />} />
 
       </Routes>

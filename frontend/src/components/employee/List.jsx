@@ -27,7 +27,7 @@ const List = () => {
             dep_name: emp.department?.dep_name || '',
             name: emp.userId?.name || '',
             email: emp.userId?.email || '',
-            dob: emp.dob ? new Date(emp.dob).toDateString() : '',
+            dob: emp.dob ? new Date(emp.dob).toLocaleDateString() : '',
             image: emp.userId?.profileImage || '', 
             profileImage: emp.userId.profileImage,
             action: (<EmployeeButtons _id={emp._id} />)
