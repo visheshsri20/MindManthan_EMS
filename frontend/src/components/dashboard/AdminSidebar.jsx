@@ -44,12 +44,13 @@ const AdminSidebar = () => {
           className="flex items-center space-x-4 py-2.5 px-4 rounded  hover:bg-blue-400"
         >
           <FaCalendarAlt />
-          <span>Attendance</span>
+          <span>Leave status</span>
         </NavLink>
         <NavLink
-          to="/AdminDashboard"
-          className="flex items-center space-x-4 py-2.5 px-4 rounded  hover:bg-blue-400"
-        >
+          to="/AdminDashboard/salary/Add"
+           className={({ isActive }) =>
+            `${isActive ? 'bg-[#007BFF]' : ''} flex items-center space-x-4 py-2.5 px-4 rounded  hover:bg-blue-400`
+          }>
           <FaMoneyBillWave />
           <span>Payroll</span>
         </NavLink>

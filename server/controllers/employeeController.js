@@ -3,6 +3,7 @@ import User from '../models/User.js';
 import bcrypt from 'bcrypt';
 import multer from 'multer';
 import path from 'path';
+import Department from '../models/Department.js';
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -85,12 +86,15 @@ const getEmployees = async (req, res) =>
 const getEmployee = async (req, res) => {
   const { id } = req.params;
   try {
-    const employee = await Employee.findById(id) // Pass the id directly
+    let employee;
+     employee = await Employee.findById(id)
       .populate('userId', { password: 0 })
       .populate('department');
     if (!employee) {
-      return res.status(404).json({ success: false, error: 'Employee not found' });
-    }
+     employee = await Employee.findOne({userId : id})
+      .populate('userId', { password: 0 })
+      .populate('department');
+     }
     return res.status(200).json({ success: true, employee });
   } catch (error) {
     console.error('Error getting employee:', error);
@@ -98,5 +102,78 @@ const getEmployee = async (req, res) => {
   }
 };
 
+const updateEmployee = async (req, res) => {
+    try{
+        const { id } = req.params;
+        const {
+            name,
+            email,
+            maritalStatus,
+            dob,
+            department,
+            designation,
+            salary,
+        } = req.body;
+     
+        const employee = await Employee.findById({_id : id});
+        if (!employee) {
+            return res.status(404).json({ success: false, error: 'Employee not found' });
+        }
+        const user = await User.findById({_id: employee.userId});
 
-export {addEmployee, upload, getEmployees, getEmployee};
+        if(!user) {
+            return res.status(404).json({ success: false, error: 'User not found' });
+        }
+
+        const updatedUser = await User.findByIdAndUpdate(
+            employee.userId,
+            { name})
+
+        const updatedEmployee = await Employee.findByIdAndUpdate(
+            {_id:id},
+            {   
+                email,
+                maritalStatus,
+                dob,
+                designation,
+                salary,
+                department
+            }
+        );
+
+        if (!updatedEmployee || !updatedUser) {
+            return res.status(404).json({ success: false, error: 'Employee document not found' });
+            console.log('Employee document not found',error);
+        }
+
+        else {
+            return res.status(200).json({ success: true, message: 'Employee updated successfully' });
+        }
+
+            
+    }
+    catch (error) {
+        return res.status(500).json({success: false, error: 'Update employee server error'});
+    }
+}
+
+export const fetchEmployeesByDepId = async (req, res) => {
+  const { id } = req.params; // Extract department ID from the route parameter
+  try {
+    const employees = await Employee.find({ department: id }) // Query employees by department ID
+      .populate('userId', { password: 0 }) // Populate user details
+      .populate('department'); // Populate department details
+
+    if (!employees || employees.length === 0) {
+      return res.status(404).json({ success: false, error: 'No employees found for this department' });
+    }
+
+    return res.status(200).json({ success: true, employees });
+  } catch (error) {
+    console.error('Error fetching employees by department ID:', error);
+    return res.status(500).json({ success: false, error: 'Server error while fetching employees' });
+  }
+};
+
+
+export {addEmployee, upload, getEmployees, getEmployee,updateEmployee};

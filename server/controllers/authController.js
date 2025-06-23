@@ -46,8 +46,8 @@ const login = async (req, res) => {
 };
 
 const verify = (req, res) => {
-    console.log('Verify route hit');
-    console.log('User:', req.user);
+    // console.log('Verify route hit');
+    // console.log('User:', req.user);
     return res.status(200).json({ success: true, user: req.user });
 };
 

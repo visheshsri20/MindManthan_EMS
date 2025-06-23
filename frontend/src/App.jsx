@@ -11,8 +11,14 @@ import EditDepartment from './components/department/EditDepartment';
 import List from './components/employee/List';
 import Add from './components/employee/Add';
 import View from './components/employee/View';
+import Edit from './components/employee/Edit';
+import AddSalary from './components/salary/Add';
+import Summary from './components/EmployeeDashboard/Summary';
+import LeaveList from './components/leave/List';
+import AddLeave from './components/leave/Add';
 
 import './index.css'; // Tailwind CSS
+import PrivateRoutes from './utils/PrivateRoutes';
 
 function App() {
   return (
@@ -44,10 +50,24 @@ function App() {
           <Route path="add-employee" element={<Add />} />
           <Route path="employees" element={<List />} />
           <Route path="employees/:id" element={<View />} />
+          <Route path="employees/edit/:id" element={<Edit />} />
+          
+          <Route path="salary/Add" element={<AddSalary />} />
         </Route>
 
 
-        <Route path="/EmployeeDashboard" element={<EmployeeDashboard />} />
+        <Route path="/EmployeeDashboard" element={
+          <PrivateRoutes>
+            <RoleBaseRoutes requiredRole={['admin','employee']}>
+                <EmployeeDashboard />
+            </RoleBaseRoutes>
+          </PrivateRoutes>
+          } >
+          <Route index element={<Summary />} />
+          <Route path="/EmployeeDashboard/profile/:id" element={<View/>} />
+          <Route path="/EmployeeDashboard/leaves" element={<LeaveList />} />
+          <Route path="/EmployeeDashboard/leaves/add" element={<AddLeave />} />
+        </Route>
 
       </Routes>
     </BrowserRouter>

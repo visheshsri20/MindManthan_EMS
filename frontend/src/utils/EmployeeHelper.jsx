@@ -61,6 +61,26 @@ export const fetchDepartments = async () => {
   }
 };
 
+export const getEmployees = async (id) => {
+  let employees;
+  try {
+    const response = await axios.get(`http://localhost:5000/api/employee/department/${id}`, {
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem('token')}`
+      }
+    });
+    if (response.data.success) {
+     employees = response.data.employees;
+     return employees
+    }
+  
+  } catch (error) {
+    return [];
+  }
+};
+
+
+
 export const EmployeeButtons = ({_id}) => {
     const navigate = useNavigate();
 
@@ -75,7 +95,7 @@ export const EmployeeButtons = ({_id}) => {
             </button>
             <button
                 className="px-4 py-1 bg-blue-500 text-white hover:bg-blue-600 transition-colors"
-              
+              onClick ={() => navigate(`/AdminDashboard/employees/edit/${_id}`)}
             >
                 Edit
             </button>
