@@ -25,15 +25,41 @@ const addLeave = async (req, res) => {
 };
 
 // Get all leaves for a user
+// const getLeave = async (req, res) => {
+//     try {
+//         const { id } = req.params;
+//         const leaves = await Leave.find({ userId: id }).sort({ createdAt: -1 });
+//         return res.status(200).json({ leaves });
+//     } catch (error) {
+//         console.error('Error fetching leaves:', error);
+//         return res.status(500).json({ error: 'Server error' });
+//     }
+// };
+
 const getLeave = async (req, res) => {
+  try {
+    const leave = await Leave.findById(req.params.id).populate('userId');
+    if (!leave) {
+      return res.status(404).json({ success: false, message: 'Leave not found' });
+    }
+    res.json({ success: true, leave });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+
+const getLeaves = async (req, res) => {
     try {
-        const { id } = req.params;
-        const leaves = await Leave.find({ userId: id }).sort({ createdAt: -1 });
-        return res.status(200).json({ leaves });
+        const leaves = await Leave.find()
+            .populate('userId', 'name email') // Only populate fields that exist in User
+            .sort({ createdAt: -1 });
+        return res.status(200).json({ success: true, leaves });
     } catch (error) {
         console.error('Error fetching leaves:', error);
         return res.status(500).json({ error: 'Server error' });
     }
 };
 
-export { addLeave, getLeave };
+
+export { addLeave, getLeave, getLeaves };

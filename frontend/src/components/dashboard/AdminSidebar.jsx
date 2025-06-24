@@ -40,11 +40,12 @@ const AdminSidebar = () => {
           <span>Departments</span>
         </NavLink>
         <NavLink
-          to="/AdminDashboard"
-          className="flex items-center space-x-4 py-2.5 px-4 rounded  hover:bg-blue-400"
-        >
+          to="/AdminDashboard/leaves"
+         className={({ isActive }) =>
+            `${isActive ? 'bg-[#007BFF]' : ''} flex items-center space-x-4 py-2.5 px-4 rounded  hover:bg-blue-400`
+          }>
           <FaCalendarAlt />
-          <span>Leave status</span>
+          <span>Leaves</span>
         </NavLink>
         <NavLink
           to="/AdminDashboard/salary/Add"

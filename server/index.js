@@ -8,6 +8,7 @@ import employeeRouter from './routes/employee.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import leaveRouter from './routes/leave.js';
+import settingRouter from './routes/setting.js';
 
 dotenv.config();
 const app = express()
@@ -27,6 +28,7 @@ app.use('/api/department', departmentRouter)
 app.use('/api/employee', employeeRouter)
 
 app.use('/api/leave', leaveRouter)
+app.use('/api/setting', settingRouter)
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

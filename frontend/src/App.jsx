@@ -16,9 +16,13 @@ import AddSalary from './components/salary/Add';
 import Summary from './components/EmployeeDashboard/Summary';
 import LeaveList from './components/leave/List';
 import AddLeave from './components/leave/Add';
+import Setting from './components/EmployeeDashboard/Setting';
+
 
 import './index.css'; // Tailwind CSS
 import PrivateRoutes from './utils/PrivateRoutes';
+import Table from './components/leave/Table';
+import Detail from './components/leave/Detail';
 
 function App() {
   return (
@@ -53,6 +57,9 @@ function App() {
           <Route path="employees/edit/:id" element={<Edit />} />
           
           <Route path="salary/Add" element={<AddSalary />} />
+          
+          <Route path="leaves" element={<Table />} />
+          <Route path="leaves/:id" element={<Detail />} />
         </Route>
 
 
@@ -67,6 +74,7 @@ function App() {
           <Route path="/EmployeeDashboard/profile/:id" element={<View/>} />
           <Route path="/EmployeeDashboard/leaves" element={<LeaveList />} />
           <Route path="/EmployeeDashboard/leaves/add" element={<AddLeave />} />
+          <Route path="/EmployeeDashboard/settings" element={<Setting/>} />
         </Route>
 
       </Routes>
