@@ -60,6 +60,7 @@ function App() {
           
           <Route path="leaves" element={<Table />} />
           <Route path="leaves/:id" element={<Detail />} />
+          <Route path="settings" element={<Setting />} />
         </Route>
 
 

@@ -60,11 +60,12 @@ const updateDepartment = async (req, res) => {
 const deleteDepartment = async (req, res) => {
     try {
         const { id } = req.params;
-        const department = await Department.findByIdAndDelete(id);
+        const department = await Department.findById(id);
         if (!department) {
             return res.status(404).json({ success: false, error: "Department not found" });
         }
-        return res.status(200).json({ success: true, department,message: "Department deleted successfully" });
+        await department.deleteOne(); // This triggers the pre('deleteOne') hook
+        return res.status(200).json({ success: true, department, message: "Department deleted successfully" });
     } catch (error) {
         return res.status(500).json({ success: false, error: "Delete department server error" });
     }
