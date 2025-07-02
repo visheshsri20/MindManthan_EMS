@@ -17,12 +17,13 @@ import Summary from './components/EmployeeDashboard/Summary';
 import LeaveList from './components/leave/List';
 import AddLeave from './components/leave/Add';
 import Setting from './components/EmployeeDashboard/Setting';
-
+import Attendance from './components/attendance/Attendance';
 
 import './index.css'; // Tailwind CSS
 import PrivateRoutes from './utils/PrivateRoutes';
 import Table from './components/leave/Table';
 import Detail from './components/leave/Detail';
+import AttendanceReport from './components/attendance/AttendanceReport';
 
 function App() {
   return (
@@ -61,6 +62,8 @@ function App() {
           <Route path="leaves" element={<Table />} />
           <Route path="leaves/:id" element={<Detail />} />
           <Route path="settings" element={<Setting />} />
+          <Route path="attendance" element={<Attendance />} />
+          <Route path="attendance-report" element={<AttendanceReport />} />
         </Route>
 
 

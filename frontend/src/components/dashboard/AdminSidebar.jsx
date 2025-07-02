@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaBuilding, FaCalendarAlt, FaCogs, FaMoneyBillWave, FaTachometerAlt, FaUsers } from 'react-icons/fa';
+import { FaClipboardList,FaBuilding, FaCalendarAlt, FaCogs, FaMoneyBillWave, FaTachometerAlt, FaUsers, FaFile } from 'react-icons/fa';
+
 
 const AdminSidebar = () => {
   return (
@@ -39,6 +40,24 @@ const AdminSidebar = () => {
           <FaBuilding />
           <span>Departments</span>
         </NavLink>
+        <NavLink
+                  to="/AdminDashboard/attendance"
+                  className={({ isActive }) =>
+                    `${isActive ? 'bg-[#007BFF]' : ''} flex items-center space-x-4 py-2.5 px-4 rounded hover:bg-blue-400`
+                  }
+                >
+                  <FaClipboardList />
+                  <span>Attendance</span>
+                </NavLink>
+                <NavLink
+                  to="/AdminDashboard/attendance-report"
+                  className={({ isActive }) =>
+                    `${isActive ? 'bg-[#007BFF]' : ''} flex items-center space-x-4 py-2.5 px-4 rounded hover:bg-blue-400`
+                  }
+                >
+                  <FaFile />
+                  <span>Attendance Report</span>
+                </NavLink>
         <NavLink
           to="/AdminDashboard/leaves"
          className={({ isActive }) =>
