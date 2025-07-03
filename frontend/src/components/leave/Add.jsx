@@ -25,7 +25,7 @@ const Add = () => {
     setError(null);
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/leave/add`,
+        `https://employee-a0gcfmzec-visheshsri20s-projects.vercel.app//api/leave/add`,
         leave,
         {
           headers: {

@@ -14,6 +14,10 @@ import attendanceRouter from './routes/attendance.js';
 dotenv.config();
 const app = express()
 connectDB()
+app.use(cors({
+  origin: "https://employee-frontend-livid-six.vercel.app",
+  credentials : true
+}))
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

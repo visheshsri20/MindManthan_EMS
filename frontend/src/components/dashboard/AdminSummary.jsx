@@ -16,7 +16,7 @@ const AdminSummary = () => {
 
   useEffect(() => {
     // Fetch total employees
-    axios.get('http://localhost:5000/api/employee', {
+    axios.get('https://employee-a0gcfmzec-visheshsri20s-projects.vercel.app//api/employee', {
       headers: {
         "Authorization": `Bearer ${localStorage.getItem('token')}`
       }
@@ -25,7 +25,7 @@ const AdminSummary = () => {
       .catch(() => setTotalEmployees(0));
 
     // Fetch total departments
-    axios.get('http://localhost:5000/api/department', {
+    axios.get('https://employee-a0gcfmzec-visheshsri20s-projects.vercel.app//api/department', {
       headers: {
         "Authorization": `Bearer ${localStorage.getItem('token')}`
       }
@@ -34,7 +34,7 @@ const AdminSummary = () => {
       .catch(() => setTotalDepartments(0));
 
     // Fetch leave stats
-    axios.get('http://localhost:5000/api/leave', {
+    axios.get('https://employee-a0gcfmzec-visheshsri20s-projects.vercel.app//api/leave', {
       headers: {
         "Authorization": `Bearer ${localStorage.getItem('token')}`
       }
@@ -53,7 +53,7 @@ const AdminSummary = () => {
       }));
 
     // Fetch monthly salary (commented out)
-    // axios.get('http://localhost:5000/api/salary/total', {
+    // axios.get('https://employee-a0gcfmzec-visheshsri20s-projects.vercel.app//api/salary/total', {
     //   headers: {
     //     "Authorization": `Bearer ${localStorage.getItem('token')}`
     //   }

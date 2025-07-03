@@ -12,7 +12,7 @@ const Detail = () => {
   useEffect(() => {
     const fetchLeave = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/leave/detail/${id}`, {
+        const response = await axios.get(`https://employee-a0gcfmzec-visheshsri20s-projects.vercel.app//api/leave/detail/${id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -69,7 +69,7 @@ const Detail = () => {
 
 const changeStatus = async (id, status) => {
   try {
-    const response = await axios.put(`http://localhost:5000/api/leave/${id}`, { status }, {
+    const response = await axios.put(`https://employee-a0gcfmzec-visheshsri20s-projects.vercel.app//api/leave/${id}`, { status }, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
@@ -99,7 +99,7 @@ const changeStatus = async (id, status) => {
           <h2 className="text-3xl font-bold mb-8 text-center text-green-700">Leave Details</h2>
           <div className="flex flex-col items-center">
             <img
-              src={`http://localhost:5000/uploads/${user.profileImage || 'default-profile.png'}`}
+              src={`https://employee-a0gcfmzec-visheshsri20s-projects.vercel.app//uploads/${user.profileImage || 'default-profile.png'}`}
               alt="Profile"
               className="w-40 h-40 rounded-full object-cover mb-6 border-4 border-green-400"
             />

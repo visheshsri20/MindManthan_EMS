@@ -28,7 +28,7 @@ const Setting = () => {
     }
     try {
       const res = await axios.put(
-        "http://localhost:5000/api/setting/change-password",
+        "https://employee-a0gcfmzec-visheshsri20s-projects.vercel.app//api/setting/change-password",
         {
           userId: setting.userId,
           oldPassword: setting.oldPassword,
